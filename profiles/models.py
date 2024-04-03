@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delet=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(blank = True)
     avatar = models.ImageField(default ='avatar.png', upload_to='avatars')
     updated = models.DateTimeField(auto_now=True)
