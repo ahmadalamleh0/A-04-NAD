@@ -28,12 +28,12 @@ const likeUnlikePosts = ()=> {
     likeUnlikeForms.forEach(form=> form.addEventListener('submit', e=>{
 
         e.preventDefault()
-        const clickedId = e.target.getAtrribute('data-form-id')
+        const clickedId = e.target.getAttribute('data-form-id')
         const clickedBtn =document.getElementById(`like-unlike-${clickedId}`)
 
         $.ajax({
             type: 'POST',
-            url: "",
+            url: "/like-unlike/",
             data: {
                 'csrfmiddlewaretoken': csrftoken,
                 'pk': clickedId,
@@ -79,8 +79,7 @@ const getData = () =>{
                                 </div>
                                 <div class="col-2">
                                 <form class="like-unlike-forms" data-form-id="${el.id}">
-                                {% csrf_token %}
-                                    <button href="#" class="btn btn-primary" id="like-unlike-${el.id}>${el.liked ? `Unlike (${el.count})`:`like (${el.count})` }</a>
+                                    <button href="#" class="btn btn-primary" id="like-unlike-${el.id}">${el.liked ? `Unlike (${el.count})`:`like (${el.count})` }</a>
                                     </form>
                                 </div>
                              </div> 
@@ -88,6 +87,7 @@ const getData = () =>{
                     </div>
                 `
             });
+            likeUnlikePosts()
             },100)
             console.log(response.size)
             if(response.size === 0){
