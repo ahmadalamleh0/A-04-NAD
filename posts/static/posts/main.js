@@ -26,16 +26,20 @@ $.ajax({
     success: function(response){
         console.log(response)
         const data = response.data
-        spinnerBox.classList.add('not-visible')
-        console.log(data)
-        data.forEach(el => {
-            postsBox.innerHTML += `
-        
-        ${el.title} - <b>${el.body}</b><br>
-
-        `
+        setTimeout(() => {
+            spinnerBox.classList.add('not-visible')
+            console.log(data)
+            data.forEach(el => {
+                postsBox.innerHTML += `
+            
+            ${el.title} - <b>${el.body}</b><br>
+            `
         });
  
+
+        },1000)
+ 
+     
     },
 
     error: function(error){
