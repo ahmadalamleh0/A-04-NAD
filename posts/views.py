@@ -8,18 +8,19 @@ from profiles.models import Profile
 # Create your views here.
 
 def post_list_and_create(request):
-    form = PostForm(request.Post or None )
+    form = PostForm(request.POST or None)
     #qs = Post.objects.all()
 
-    if request.is_ajax():
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         if form.is_valid():
             author = Profile.objects.get(user=request.user)
             instance = form.save(commit=False)
-            instance.author =author
+            instance.author = author
             instance.save()
-            context ={
-                'form': form,
-            }
+
+    context = {
+        'form': form,
+    }
     return render(request, 'posts/main.html', context)
 
 def load_post_data_view(request, num_posts ):
