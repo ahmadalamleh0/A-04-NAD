@@ -22,8 +22,8 @@ posts
                    </div>
                 <div class="modal-body">
                     <form id="post-form">
-                         {% csrf_token %}
-                         {{form|crispy}}
+                    {% csrf_token %}
+                    {{form|crispy}}
                     <div class="modal-footer">
                              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">close</button>
                              <button type="submit" class="btn btn-success">+ add</button>
