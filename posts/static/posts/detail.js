@@ -1,6 +1,5 @@
 console.log('hello world detail')
-
-
+const postBox = document.getElementById('post-box')
 const backBtn = document.getElementById('back-btn')
 const updateBtn=document.getElementById('update-btn')
 const deleteBtn=document.getElementById('delete-btn')
@@ -25,6 +24,19 @@ $.ajax({
             updateBtn.classList.remove('not-visible')
             deleteBtn.classList.remove('not-visible')
         }
+
+        const titleEL = document.createElement('h3')
+        titleEL.setAttribute('class','mt-3')
+
+        const bodyEL = document.createElement('p')
+        bodyEL.setAttribute('class','mt-1')
+
+        titleEL.textContent = data.title
+        bodyEL.textContent = data.body
+
+        postBox.appendChild(titleEL)
+        postBox.appendChild(bodyEL)
+
 
         spinnerBox.classList.add('not-visible')
     },
