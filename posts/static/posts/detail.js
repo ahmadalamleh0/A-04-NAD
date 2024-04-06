@@ -17,6 +17,8 @@ const spinnerBox = document.getElementById('spinner-box')
 const titleInput = document.getElementById('id_title')
 const bodyInput = document.getElementById('id_body')
 
+const csrf = document.getElementsByName('csrfmiddlewaretoken')
+
 backBtn.addEventListener('click', ()=>{
     history.back()
 })
@@ -66,6 +68,25 @@ updateForm.addEventListener('submit', e=>{
     e.preventDefault()
     const title = document.getElementById('title')
     const body = document.getElementById('body')
+    
+
+    $.ajax({
+        type : 'POST',
+        url: updateUrl,
+        data: {
+            'csrfmiddlewaretoken': csrf[0].value,
+            'title': titleInput.value,
+            'body': bodyInput.value,
+        },
+        success: function(response){
+            console.log(response)
+        },
+        error: function(error){
+            console.log(error)
+        }
+
+
+    })
 
 
 
