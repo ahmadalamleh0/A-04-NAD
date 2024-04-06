@@ -11,6 +11,9 @@ const postForm = document.getElementById('post-form')
 const title = document.getElementById('id_title')
 const body = document.getElementById('id_body')
 const csrf = document.getElementsByName('csrfmiddlewaretoken')
+
+
+const alertBox = document.getElementById('alert-box')
 console.log('csrf', csrf[0].value)
 
 
@@ -158,7 +161,7 @@ postForm.addEventListener('submit', e=>{
         `)
         likeUnlikePosts()
         $('#addPostModel').model('hide')
-        
+
         },
         error: function(error)
         {
