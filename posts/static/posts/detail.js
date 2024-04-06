@@ -1,12 +1,14 @@
 console.log('hello world detail')
 const postBox = document.getElementById('post-box')
+const alertBox = document.getElementById('alert-box')
 const backBtn = document.getElementById('back-btn')
 const updateBtn=document.getElementById('update-btn')
 const deleteBtn=document.getElementById('delete-btn')
 
 const url = window.location.href + "data/"
-const updateUrl= window.location.href + "/update"
-const deleteUrl= window.location.href + "/delete"
+
+const updateUrl = window.location.href + "update/"
+const deleteUrl= window.location.href + "delete/"
 
 const updateForm = document.getElementById('update-form')
 const deleteForm = document.getElementById('delete-form')
@@ -59,19 +61,20 @@ $.ajax({
     },
 
     error: function(error){
-        console.log(error);
+        console.log(error)
     }
     
 })
 
 updateForm.addEventListener('submit', e=>{
     e.preventDefault()
+
     const title = document.getElementById('title')
     const body = document.getElementById('body')
     
 
     $.ajax({
-        type : 'POST',
+        type: 'POST',
         url: updateUrl,
         data: {
             'csrfmiddlewaretoken': csrf[0].value,
@@ -80,6 +83,9 @@ updateForm.addEventListener('submit', e=>{
         },
         success: function(response){
             console.log(response)
+            handleAlerts('success', 'post has been updated' )
+            title.textContent = response.title
+            body.textContent = response.body
         },
         error: function(error){
             console.log(error)

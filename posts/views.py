@@ -79,7 +79,7 @@ def post_detail_data_view(request, pk):
 
 
 def like_unlike_post(request):
-   if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         pk = request.POST.get('pk')
         obj = Post.objects.get(pk=pk)
         if request.user in obj.liked.all():
@@ -89,8 +89,8 @@ def like_unlike_post(request):
             liked = True
             obj.liked.add(request.user)
         return JsonResponse ({'liked': liked, 'count': obj.like_count})
-   
-def update_post(request,pk):
+
+def update_post(request, pk):
     obj = Post.objects.get(pk=pk)
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         new_title = request.POST.get('title')
@@ -100,12 +100,12 @@ def update_post(request,pk):
         obj.save()
         return JsonResponse({
             'title': new_title,
-            'body': new_body
+            'body': new_body,
         })
     
 
-    def delete_post(request,pk):
-        obj = Post.objects.get(pk=pk)
-        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            obj.delete()
-            return JsonResponse({})
+def delete_post(request, pk):
+    obj = Post.objects.get(pk=pk)
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        obj.delete()
+        return JsonResponse({})
