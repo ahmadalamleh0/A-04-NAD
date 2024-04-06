@@ -104,8 +104,8 @@ def update_post(request,pk):
         })
     
 
-
-
-def hello_world_view(request):
-    return JsonResponse({'text': 'hello world x2'})
-
+    def delete_post(request,pk):
+        obj = Post.objects.get(pk=pk)
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            obj.delete()
+            return JsonResponse({})
