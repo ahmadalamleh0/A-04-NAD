@@ -17,11 +17,19 @@ def post_list_and_create(request):
             instance = form.save(commit=False)
             instance.author = author
             instance.save()
+            return JsonResponse({
+                'title' : instance.title,
+                'body': instance.body,
+                'author': instance.author.user.username,
+                'id': instance.id,
+            })
 
     context = {
         'form': form,
     }
     return render(request, 'posts/main.html', context)
+
+
 
 def load_post_data_view(request, num_posts ):
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
