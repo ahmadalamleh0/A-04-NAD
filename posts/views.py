@@ -36,10 +36,7 @@ def post_detail(request,pk):
     context = {
         'obj': obj,
         'form': form,
-
-
     }
-
     return render(request, 'posts/detail.html', context)
 
 
