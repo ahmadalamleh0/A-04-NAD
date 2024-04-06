@@ -104,17 +104,16 @@ e.preventDefault()
 $.ajax({
     type: 'POST',
     url: deleteUrl,
-    data: { 
+    data: {
         'csrfmiddlewaretoken': csrf[0].value,
     },
-    success: function(response)
-    {
+
+    success: function(response){
         window.location.href = window.location.origin
         localStorage.setItem('title', titleInput.value)
 
     },
-    error:function(error)
-    {
+    error:function(error){
         console.log(error)
     }
 
