@@ -4,10 +4,12 @@ from django.http import JsonResponse,HttpResponse
 from .forms import PostForm
 from profiles.models import Profile
 from .utlis import action_permission
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+
+@login_required
 def post_list_and_create(request):
     form = PostForm(request.POST or None)
     #qs = Post.objects.all()
