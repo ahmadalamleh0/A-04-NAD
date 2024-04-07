@@ -12,3 +12,5 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"profile of the user {self.user.username}"
+    
+    
