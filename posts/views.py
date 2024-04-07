@@ -105,8 +105,9 @@ def delete_post(request, pk):
     obj = Post.objects.get(pk=pk)
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         obj.delete()
-        return JsonResponse({})
-    
+        return JsonResponse({'msg': 'some message'})
+    return JsonResponse({'msg': 'access denied - ajax only'})
+        
 
 def image_upload_view(request):
    #print(request.FILES)
@@ -115,5 +116,5 @@ def image_upload_view(request):
         new_post_id = request.POST.get('new_post_id')
         post = Post.objects.get(id=new_post_id)
         Photo.objects.create(image=img, post=post)
-    return HttpResponse()
+    return HttpResponse()   
 
